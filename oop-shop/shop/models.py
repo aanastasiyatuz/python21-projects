@@ -27,6 +27,11 @@ class Product:
     def __str__(self):
         return f"{self.title} [{self.quantity}] - ${self.price}\n({self.desc[:20]})"
 
+    @property
+    def comments(self):
+        return [c for c in Comment.objects if c.product == self]
+
+
 class Comment:
     objects = []
 

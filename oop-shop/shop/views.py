@@ -11,9 +11,12 @@ def product_list():
 
 def product_create():
     title = input("Введите название: ")
-    price = input("Введите цену: ")
+    price = float(input("Введите цену: "))
     desc = input("Введите описание: ")
-    quantity = input("Введите кол-во: ")
+    quantity = int(input("Введите кол-во: "))
+    color = input(f"Введите цвет {Product.colors}: ")
+
+    cat_title = input(f"Выберите категорию {[cat.title for cat in Category.objects]}:")
 
     print("Выберите категорию:")
     for cat in Category.objects:
@@ -21,7 +24,7 @@ def product_create():
     cat_title = input("=====================\n")
     category = get_obj_or_404(Category, "title", cat_title)
 
-    Product(title, price, desc, quantity, category)
+    Product(title, price, desc, quantity, category, color)
     return "Продукт успешно создан"
 
 def product_detail(p_id):
